@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { mockSearchResult } from "../constants/mock-data";
 import { XIcon, SearchIcon } from "@heroicons/react/solid";
 import SearchResults from "./dashboard-search-results";
+import ThemeContext from "../context/theme-context";
 
 export default function DashBoardSearchBar() {
   const [input, setInput] = useState("");
   const [bestMatches, setBestMatches] = useState(mockSearchResult.result);
+
+  const { darkMode } = useContext(ThemeContext);
 
   const clear = () => {
     setInput("");
@@ -18,20 +21,23 @@ export default function DashBoardSearchBar() {
 
   return (
     <div
-      className="flex items-center
-        my-4 border-2
-        rounded-md
-        relative
-        z-50
-        w-96
-        bg-white
-        border-neutral-200"
+      className={`flex items-center
+      my-4 border-2
+      rounded-md
+      relative
+      z-50
+      w-96
+      ${
+        darkMode ? "bg-gray-900 border-gray-800" : "bg-white border-neutral-200"
+      }`}
     >
       {/* input search term */}
       <input
         type="text"
         value={input}
-        className=" w-full px-4 py-2 focus:outline-none rounded-md"
+        className={`w-full px-4 py-2 focus:outline-none rounded-md
+        ${darkMode ? "bg-gray-800" : ""}
+        `}
         placeholder="Search stock..."
         onChange={(event) => {
           setInput(event.target.value);
