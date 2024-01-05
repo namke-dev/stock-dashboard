@@ -3,6 +3,7 @@ import Cart from "./cart";
 import { mockCompanyDetails } from "../constants/mock-data";
 import Header from "./dashboard-header";
 import CompanyDetail from "./company-detail";
+import DashboardOverview from "./dashboard-overview";
 
 export default function Dashboard() {
   return (
@@ -33,7 +34,13 @@ export default function Dashboard() {
 
       {/* Company Overview */}
       <div>
-        <Cart>Overview</Cart>
+        <DashboardOverview
+          sympol={mockCompanyDetails.sympol}
+          price={300}
+          change={30}
+          changePercent={10.0}
+          currency={"USD"}
+        />
       </div>
 
       {/* Company detail */}
