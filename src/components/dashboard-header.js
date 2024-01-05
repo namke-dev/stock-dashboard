@@ -1,7 +1,7 @@
 import React from "react";
-import Search from "./search";
+import Search from "./dashboard-search-bar";
 
-export default function Header({ name }) {
+export default function DashboardHeader({ name }) {
   return (
     <>
       <div>

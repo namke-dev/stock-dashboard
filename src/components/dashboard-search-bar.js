@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { mockSearchResult } from "../constants/mock";
+import { mockSearchResult } from "../constants/mock-data";
 import { XIcon, SearchIcon } from "@heroicons/react/solid";
-import SearchResults from "./search-results";
-export default function Search() {
+import SearchResults from "./dashboard-search-results";
+
+export default function DashBoardSearchBar() {
   const [input, setInput] = useState("");
   const [bestMatches, setBestMatches] = useState(mockSearchResult.result);
 
@@ -44,7 +45,7 @@ export default function Search() {
 
       {/* Clear button */}
       {input && (
-        <button onClick={clear}>
+        <button onClick={clear} className="m-1">
           <XIcon className="h-4 w-4 fill-gray-500" />
         </button>
       )}
