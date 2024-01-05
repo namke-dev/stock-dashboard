@@ -1,5 +1,5 @@
 import React from "react";
-import Search from "./dashboard-search-bar";
+import DashBoardSearchBar from "./dashboard-search-bar";
 import ThemeIcon from "./theme-icon";
 
 export default function DashboardHeader({ name }) {
@@ -7,7 +7,7 @@ export default function DashboardHeader({ name }) {
     <>
       <div>
         <h1 className="text-5xl">{name}</h1>
-        <Search />
+        <DashBoardSearchBar />
       </div>
       <ThemeIcon />
     </>
