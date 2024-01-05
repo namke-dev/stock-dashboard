@@ -1,10 +1,12 @@
 import React from "react";
 import Cart from "./cart";
-import { mockCompanyDetails } from "../constants/mock";
-import Header from "./header";
+import { mockCompanyDetails } from "../constants/mock-data";
+import Header from "./dashboard-header";
+import CompanyDetail from "./company-detail";
 
 export default function Dashboard() {
   return (
+    // Dashboard container
     <div
       className="h-screen
         grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3
@@ -13,6 +15,7 @@ export default function Dashboard() {
         gap-6 p-10
         font-quicksand"
     >
+      {/* Dashboard Header */}
       <div
         className="
           col-span-1 md:col-span-2 xl:col-span-3 row-span-1
@@ -22,14 +25,20 @@ export default function Dashboard() {
       >
         <Header name={mockCompanyDetails.name} />
       </div>
+
+      {/* Stock Chart */}
       <div className="md:col-span-2 row-span-4">
         <Cart>Chart</Cart>
       </div>
+
+      {/* Company Overview */}
       <div>
         <Cart>Overview</Cart>
       </div>
+
+      {/* Company detail */}
       <div className="row-span-2 xl:row-span-3">
-        <Cart>Details</Cart>
+        <CompanyDetail details={mockCompanyDetails} />
       </div>
     </div>
   );
