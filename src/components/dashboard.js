@@ -1,9 +1,9 @@
 import React from "react";
-import Cart from "./cart";
 import { mockCompanyDetails } from "../constants/mock-data";
 import Header from "./dashboard-header";
 import CompanyDetail from "./company-detail";
 import DashboardOverview from "./dashboard-overview";
+import DashboardChart from "./dashboard-chart";
 
 export default function Dashboard() {
   return (
@@ -14,7 +14,8 @@ export default function Dashboard() {
         grid-rows-8 md:grid-rows-7 xl:grid-rows-5
         auto-rows-fr
         gap-6 p-10
-        font-quicksand"
+        font-quicksand
+        bg-neutral-100"
     >
       {/* Dashboard Header */}
       <div
@@ -29,7 +30,7 @@ export default function Dashboard() {
 
       {/* Stock Chart */}
       <div className="md:col-span-2 row-span-4">
-        <Cart>Chart</Cart>
+        <DashboardChart />
       </div>
 
       {/* Company Overview */}
