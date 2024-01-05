@@ -1,7 +1,7 @@
 import React from "react";
 import { mockCompanyDetails } from "../constants/mock-data";
 import Header from "./dashboard-header";
-import CompanyDetail from "./company-detail";
+import DashboardCompanyDetail from "./dashboard-company-detail";
 import DashboardOverview from "./dashboard-overview";
 import DashboardChart from "./dashboard-chart";
 
@@ -46,7 +46,7 @@ export default function Dashboard() {
 
       {/* Company detail */}
       <div className="row-span-2 xl:row-span-3">
-        <CompanyDetail details={mockCompanyDetails} />
+        <DashboardCompanyDetail details={mockCompanyDetails} />
       </div>
     </div>
   );
