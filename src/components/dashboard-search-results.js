@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import ThemeContext from "../context/theme-context";
+import StockContext from "../context/stock-context";
 
 export default function SearchResults({ results }) {
   const { darkMode } = useContext(ThemeContext);
+  const { setStockSymbol } = useContext(StockContext);
 
   return (
     <ul
@@ -23,10 +25,14 @@ export default function SearchResults({ results }) {
             key={item.symbol}
             className={`cursor-pointer p-4 m-2 flex items-center justify-between rounded-md
             ${darkMode ? "hover:bg-indigo-600" : "hover:bg-indigo-200"}`}
+            onClick={() => {
+              console.log(item.symbol);
+              setStockSymbol(item.symbol);
+            }}
           >
             <span>{item.symbol}</span>
             <span>{item.description}</span>
-            <span>{item.type}</span>
+            {/* <span>{item.type}</span> */}
           </li>
         );
       })}

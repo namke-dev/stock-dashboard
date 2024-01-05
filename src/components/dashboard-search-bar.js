@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
-import { mockSearchResult } from "../constants/mock-data";
 import { XIcon, SearchIcon } from "@heroicons/react/solid";
 import SearchResults from "./dashboard-search-results";
 import ThemeContext from "../context/theme-context";
+import { searchSymbols } from "../api/stock-api";
 
 export default function DashBoardSearchBar() {
   const [input, setInput] = useState("");
-  const [bestMatches, setBestMatches] = useState(mockSearchResult.result);
+  const [bestMatches, setBestMatches] = useState([]);
 
   const { darkMode } = useContext(ThemeContext);
 
@@ -15,8 +15,17 @@ export default function DashBoardSearchBar() {
     setBestMatches([]);
   };
 
-  const updateBestMatches = () => {
-    setBestMatches(mockSearchResult.result);
+  const updateBestMatches = async () => {
+    try {
+      if (input) {
+        const searchResult = await searchSymbols(input);
+        const result = searchResult.result;
+        setBestMatches(result);
+      }
+    } catch (error) {
+      setBestMatches([]);
+      console.log(error);
+    }
   };
 
   return (

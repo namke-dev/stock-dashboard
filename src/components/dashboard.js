@@ -1,13 +1,44 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { mockCompanyDetails } from "../constants/mock-data";
 import Header from "./dashboard-header";
 import DashboardCompanyDetail from "./dashboard-company-detail";
 import DashboardOverview from "./dashboard-overview";
 import DashboardChart from "./dashboard-chart";
 import ThemeContext from "../context/theme-context";
+import StockContext from "../context/stock-context";
+import { fetchQuote, fetchStockDetails } from "../api/stock-api";
 
 export default function Dashboard() {
   const { darkMode } = useContext(ThemeContext);
+  const { stockSymbol } = useContext(StockContext);
+
+  const [stockDetail, setStockDetail] = useState({});
+  const [quote, setQuote] = useState({});
+
+  useEffect(() => {
+    const updateStockDetail = async () => {
+      if (!stockSymbol) return;
+      try {
+        const result = await fetchStockDetails(stockSymbol);
+        setStockDetail(result);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    const updateStockOverview = async () => {
+      if (!stockSymbol) return;
+      try {
+        const result = await fetchQuote(stockSymbol);
+        setQuote(result);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    updateStockDetail();
+    updateStockOverview();
+  }, [stockSymbol]);
+
   return (
     // Dashboard container
     <div
@@ -29,7 +60,7 @@ export default function Dashboard() {
           justify-start
           items-center"
       >
-        <Header name={mockCompanyDetails.name} />
+        <Header name={stockDetail.name} />
       </div>
 
       {/* Stock Chart */}
@@ -40,17 +71,17 @@ export default function Dashboard() {
       {/* Company Overview */}
       <div>
         <DashboardOverview
-          sympol={mockCompanyDetails.sympol}
-          price={300}
-          change={30}
-          changePercent={10.0}
-          currency={"USD"}
+          sympol={stockSymbol}
+          price={quote.pc}
+          change={quote.d}
+          changePercent={quote.dp}
+          currency={stockDetail.currency}
         />
       </div>
 
       {/* Company detail */}
       <div className="row-span-2 xl:row-span-3">
-        <DashboardCompanyDetail details={mockCompanyDetails} />
+        <DashboardCompanyDetail details={stockDetail} />
       </div>
     </div>
   );
