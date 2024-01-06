@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { mockCompanyDetails } from "../constants/mock-data";
 import Header from "./dashboard-header";
 import DashboardCompanyDetail from "./dashboard-company-detail";
 import DashboardOverview from "./dashboard-overview";
@@ -69,7 +68,7 @@ export default function Dashboard() {
       </div>
 
       {/* Company Overview */}
-      <div>
+      <div className="row-span-2  xl:row-span-1">
         <DashboardOverview
           sympol={stockSymbol}
           price={quote.pc}
@@ -80,7 +79,7 @@ export default function Dashboard() {
       </div>
 
       {/* Company detail */}
-      <div className="row-span-2 xl:row-span-3">
+      <div className="row-span-5 md:row-span-4 xl:row-span-3">
         <DashboardCompanyDetail details={stockDetail} />
       </div>
     </div>

@@ -19,23 +19,24 @@ export default function SearchResults({ results }) {
           : "bg-white  border-neutral-300"
       }`}
     >
-      {results.map((item) => {
-        return (
-          <li
-            key={item.symbol}
-            className={`cursor-pointer p-4 m-2 flex items-center justify-between rounded-md
+      {results &&
+        results.map((item) => {
+          return (
+            <li
+              key={item.symbol}
+              className={`cursor-pointer p-4 m-2 flex items-center justify-between rounded-md
             ${darkMode ? "hover:bg-indigo-600" : "hover:bg-indigo-200"}`}
-            onClick={() => {
-              console.log(item.symbol);
-              setStockSymbol(item.symbol);
-            }}
-          >
-            <span>{item.symbol}</span>
-            <span>{item.description}</span>
-            {/* <span>{item.type}</span> */}
-          </li>
-        );
-      })}
+              onClick={() => {
+                console.log(item.symbol);
+                setStockSymbol(item.symbol);
+              }}
+            >
+              <span>{item.symbol}</span>
+              <span>{item.description}</span>
+              {/* <span>{item.type}</span> */}
+            </li>
+          );
+        })}
     </ul>
   );
 }
